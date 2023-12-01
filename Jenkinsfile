@@ -67,5 +67,11 @@ pipeline{
                 sh "trivy image krishnahogale/zomato:latest > trivy.txt" 
             }
         }
+
+        stage('Deploy to container'){
+     steps{
+            sh 'docker run -d --name zomato -p 3000:3000 krishnahogale/zomato:latest'
+          }
+      }
     }
 }
